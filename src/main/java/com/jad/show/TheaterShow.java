@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import com.jad.customer.ISpectator;
+
 public class TheaterShow extends Show {
     private final String director;
     private final ArrayList<String> actors = new ArrayList<>();
@@ -21,5 +23,15 @@ public class TheaterShow extends Show {
 
     public List<String> getActors() {
         return Collections.unmodifiableList(this.actors);
+    }
+
+    @Override
+    public void showARegarder(ISpectator spectator) {
+        spectator.watch(this);
+    }
+
+    @Override
+    public void accept(ShowVisitor visitor) {
+        visitor.visit(this);
     }
 }
